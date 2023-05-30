@@ -50,7 +50,7 @@ namespace StudentService.Controllers
             student.FieldOfStudy = request.FieldOfStudy;
             student.IndexNumber = request.IndexNumber;
 
-            return Ok(students);
+            return result;
         }
 
         [HttpDelete("{id}")]
