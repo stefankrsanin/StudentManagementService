@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using StudentService.Models;
+using StudentService.Services.StudentService;
 
 namespace StudentService.Controllers
 {
@@ -8,26 +8,12 @@ namespace StudentService.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
+        private readonly IStudentService studentService;
 
-        private static List<Student> students = new List<Student>
-            {
-                new Student
-                {   Id = 1,
-                    FirstName = "Stefan",
-                    LastName = "Krsanin",
-                    Email = "stefankrsanin@gmail.com",
-                    FieldOfStudy = ".NET",
-                    IndexNumber = "1"
-                },
-                new Student
-                {   Id = 2,
-                    FirstName = "Luka",
-                    LastName = "Golubovic",
-                    Email = "lukagolubovic@gmail.com",
-                    FieldOfStudy = "Java",
-                    IndexNumber = "2"
-                }
-            };
+        public StudentController(IStudentService studentService)
+        {
+            _studentService = studentService;   
+        }
 
         [HttpGet]
         public async Task<ActionResult<List<Student>>> GetAllStudents()
