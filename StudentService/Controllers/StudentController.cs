@@ -8,7 +8,7 @@ namespace StudentService.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private readonly IStudentService studentService;
+        private IStudentService _studentService;
 
         public StudentController(IStudentService studentService)
         {
@@ -56,12 +56,10 @@ namespace StudentService.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<Student>>> DeleteStudent(int id)
         {
-            var student = students.Find(x => x.Id == id);
-            if (student == null)
-                return NotFound("This student doesn't exist");
-
-            students.Remove(student);
-            return Ok(student);
+          var result = _studentService.DeleteStudent(id);
+            if (result == null)
+                NotFound("This student doesn't exist");
+            return result;
         }
     }
 }
