@@ -40,6 +40,7 @@ namespace StudentService.Controllers
         [HttpPut]
         public async Task<ActionResult<List<Student>>> UpdateStudent(int id, Student request)
         {
+            Console.WriteLine("Test commit");
             var student = students.Find(x => x.Id == id);
             if (student == null)
                 return NotFound("This student doesn't exist");
