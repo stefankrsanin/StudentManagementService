@@ -29,7 +29,7 @@ namespace StudentService.Services.StudentService
             throw new NotImplementedException();
         }
 
-        public List<Student> DeleteStudent(int id)
+        public List<Student>? DeleteStudent(int id)
         {
             var student = students.Find(x => x.Id == id);
             if (student == null)
@@ -49,9 +49,20 @@ namespace StudentService.Services.StudentService
             throw new NotImplementedException();
         }
 
-        public List<Student> UpdateStudent(int id, Student request)
+        public List<Student>? UpdateStudent(int id, Student request)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Test commit");
+            var student = students.Find(x => x.Id == id);
+            if (student == null)
+                return null;
+
+            student.FirstName = request.FirstName;
+            student.LastName = request.LastName;
+            student.Email = request.Email;
+            student.FieldOfStudy = request.FieldOfStudy;
+            student.IndexNumber = request.IndexNumber;
+
+            return students;
         }
     }
 }
