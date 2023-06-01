@@ -18,23 +18,23 @@ namespace StudentService.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Student>>> GetAllStudents()
         {
-            return Ok(students);
+            return _studentService.GetAllStudents();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Student>> GetSingleStudent(int id)
         {
-            var student = students.Find(x => x.Id == id);
-            if (student == null)
-                return NotFound("This student doesn't exist");
-            return Ok(student);
+            var result = _studentService.GetSingleStudent(id);
+            if (result == null)
+                NotFound("This student doesn't exist");
+            return result;
         }
 
         [HttpPost("{id}")]
         public async Task<ActionResult<List<Student>>> AddStudent(Student student)
         {
-            students.Add(student);
-            return Ok(students);
+            var result = _studentService.AddStudent(student);
+            return result;
         }
 
         [HttpPut]

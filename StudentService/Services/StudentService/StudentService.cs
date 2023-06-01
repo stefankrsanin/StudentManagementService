@@ -26,7 +26,8 @@ namespace StudentService.Services.StudentService
             };
         public List<Student> AddStudent(Student student)
         {
-            throw new NotImplementedException();
+            students.Add(student);
+            return students;
         }
 
         public List<Student>? DeleteStudent(int id)
@@ -41,12 +42,15 @@ namespace StudentService.Services.StudentService
 
         public List<Student> GetAllStudents()
         {
-            throw new NotImplementedException();
+            return students;
         }
 
-        public Student GetSingleStudent(int id)
+        public Student? GetSingleStudent(int id)
         {
-            throw new NotImplementedException();
+            var student = students.Find(x => x.Id == id);
+            if (student == null)
+                return null;
+            return student;
         }
 
         public List<Student>? UpdateStudent(int id, Student request)
