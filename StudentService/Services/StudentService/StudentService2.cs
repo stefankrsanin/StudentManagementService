@@ -2,7 +2,7 @@
 
 namespace StudentService.Services.StudentService
 {
-    public class StudentService : IStudentService
+    public class StudentService2 : IStudentService
     {
 
         private static List<Student> students = new List<Student>
